@@ -838,3 +838,7 @@ video {
     line-height: 2.5rem;
   }
 }
+/* output.css */
+.card-margin {
+  margin-bottom: 2rem !important;
+}
