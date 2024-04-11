@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <link href="https://cdn.tailwindcss.com?version=3.0.0" rel="stylesheet">
+
+    <link rel="stylesheet" href="ocorrencias.css">
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-slate-200">
+    <div class="bg-fuchsia-700 shadow-md">
+        <nav class="container mx-auto p-4 flex justify-center text-white"> <!-- Adjusted for centering -->
+            <div class="flex space-x-8 font-bold"> <!-- Increased spacing -->
+                <a href="./home.html" class="px-6 py-2 hover:bg-blue-500 hover:text-white outline-none active:border-b-2 active:border-white">Home</a>
+                <a href="#" class="px-6 py-2 hover:bg-blue-500 hover:text-white outline-none focus:outline-white">Ocorrências</a>
+                <a href="#" class="px-6 py-2 hover:bg-blue-500 hover:text-white outline-none focus:outline-white">Perfil</a>
+            </div>
+        </nav>
+    </div>
+    <div class="mb-4 text-center py-4 px-4 font-extrabold">
+        <h1 class="text-2xl ">Olá, usuário</h1>
+    </div>
+    <div class="container mx-auto">
+        <div id="react-root"></div> <!-- Aqui começam os card das ocorrências! -->
+    </div>
+    <!-- o componente do react -->
+     <!-- Na parte name:,location:, etc. tem que mudar com a informação que seja puxada do banco de dados -->
+     <script type="text/babel">
+        class Occurrences extends React.Component {
+          constructor(props) {
+            super(props);
+            this.state = {
+              occurrences: [
+                { 
+                  name: 'Júlia Coelho', 
+                  location: 'CEUB Taguatinga', 
+                  description: 'Computador da sala 1002 não funciona direito', 
+                  time: '08:50', 
+                  date: '04/06/2022',
+                  imgUrl: '../IconePerfil.png' 
+                },
+                { 
+                  name: 'Toguro', 
+                  location: 'CEUB Asa Norte', 
+                  description: 'Cadeira da Sala 2335 está quebrada', 
+                  time: '15:10', 
+                  date: '04/06/2022',
+                  imgUrl: '../IconePerfil.png' 
+                }
+              ]
+            };
+            this.addOccurrence = this.addOccurrence.bind(this);
+          }      
+          addOccurrence(newOccurrence) {
+            this.setState(state => ({
+              occurrences: [...state.occurrences, newOccurrence]
+            }));
+          }
+          render() {
+            return (
+              <div>
+                {this.state.occurrences.map((occurrence, index) => (
+                    <div key={index} className="bg-white rounded-lg p-4 shadow-md card-margin">
+
+                    <div className="flex items-start space-x-4">
+                        <img className="rounded-full object-cover" src={occurrence.imgUrl} alt="User Profile" style={{ height: '48px', width: '48px' }} />
+
+                        <div className="flex-1">
+                            <h3 className="font-semibold">{occurrence.name}</h3>
+                            <p className="text-sm">{occurrence.location}</p>
+                            <hr className="my-2 h-px bg-gray-600 border-0" />
+                            <p className="text-sm text-gray-600">{occurrence.description}</p>
+                        </div>
+                      <div className="whitespace-nowrap text-sm text-gray-600">
+                        {occurrence.time}<br />
+                        {occurrence.date}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            );
+          }
+        }
+        ReactDOM.render(<Occurrences />, document.getElementById('react-root'));
+      </script>     
+</body>
+</html>
