@@ -736,7 +736,7 @@ video {
 }
 
 .underline {
-  text-decoration-line: underline;
+  text-decoration-line: underline;  
 }
 
 .shadow-lg {
@@ -838,8 +838,3 @@ video {
     line-height: 2.5rem;
   }
 }
-/* output.css */
-.card-margin {
-  margin-bottom: 2rem !important;
-}
-
