@@ -46,7 +46,22 @@
             <h1 class="text-white text-2xl text-center max-w-lg lg:text-4xl">
             <strong>Este sistema é destinado as ocorrências do CEUB</strong></h1>    
         </section>
-
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(event) {
+                var raInput = document.forms['loginForm']['nuRA'].value;
+                var senhaInput = document.forms['loginForm']['coSenha'].value;
+                var raPattern = /^(\d{8})|([a-zA-Z0-9._%+-]+@ceub.edu.br)$/;
+                var senhaMinLength = 8;
+            
+                if (!raPattern.test(raInput)) {
+                    alert('Por favor, insira um RA de 8 dígitos ou um e-mail institucional válido.');
+                    event.preventDefault();
+                } else if (senhaInput.length < senhaMinLength) {
+                    alert('A senha deve ter pelo menos 8 caracteres.');
+                    event.preventDefault();
+                }
+            });
+            </script>
     </main>
 
 </body>
